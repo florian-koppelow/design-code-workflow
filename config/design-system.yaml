@@ -1,0 +1,96 @@
+# Design System Configuration
+# This file configures your design system integration with Figma.
+# Adjust settings based on your maturity level (0-3).
+
+name: "My Design System"
+
+# Design System Maturity Level
+# 0 = Greenfield (no DS exists yet)
+# 1 = Tokens Only (variables defined in Figma, no components)
+# 2 = Components (Figma component library exists)
+# 3 = Full System (DS + documentation platform like Storybook/Widgetbook)
+maturity_level: 0
+
+# Figma Libraries
+# Configure based on your maturity level. Leave disabled for greenfield projects.
+libraries:
+  # Working file for new designs (always required for any Figma work)
+  working_file:
+    file_key: ""  # Extract from Figma URL: figma.com/design/{FILE_KEY}/...
+    description: "Main file for creating screens and prototypes"
+  
+  # Token/Foundations library (Level 1+)
+  foundations:
+    enabled: false
+    file_key: ""
+    description: "Variables, colors, spacing, typography tokens"
+  
+  # Component library (Level 2+)
+  components:
+    enabled: false
+    file_key: ""
+    description: "UI components (buttons, cards, inputs, etc.)"
+  
+  # Asset library (Level 2+)
+  assets:
+    enabled: false
+    file_key: ""
+    description: "Icons, illustrations, logos"
+
+# Naming Conventions
+# Used for component discovery and token mapping
+naming_conventions:
+  # Prefix for design system components (e.g., "DS", "MyApp", or empty)
+  component_prefix: ""
+  
+  # Variable collection names in Figma
+  variable_collections:
+    colors: "Colors"
+    spacing: "Spacing"
+    typography: "Typography"
+    corner_radius: "Corner Radius"
+
+# Documentation Platform Integration (Level 3 - Optional)
+# Enable if you have Storybook, Widgetbook, or similar
+documentation:
+  enabled: false
+  platform: ""  # storybook, widgetbook, or custom
+  url: ""       # e.g., https://storybook.myapp.dev
+  
+# Component Categories
+# Used for organizing component searches
+component_categories:
+  navigation:
+    - "Top Bar"
+    - "Bottom Navigation"
+    - "Tab Bar"
+    - "Drawer"
+  actions:
+    - "Button"
+    - "Icon Button"
+    - "FAB"
+    - "Link"
+  content:
+    - "Card"
+    - "List Item"
+    - "Tile"
+    - "Avatar"
+  inputs:
+    - "Text Field"
+    - "Input"
+    - "Checkbox"
+    - "Switch"
+    - "Radio"
+    - "Slider"
+  feedback:
+    - "Dialog"
+    - "Modal"
+    - "Snackbar"
+    - "Toast"
+    - "Alert"
+  status:
+    - "Badge"
+    - "Tag"
+    - "Progress"
+    - "Indicator"
+    - "Spinner"

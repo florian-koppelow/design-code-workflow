@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Generated config (contains secrets)
+.cursor/mcp.json
+
+# Keep the template
+!.cursor/mcp.json.template
+
+# Node modules (if any scripts use npm)
+node_modules/
+
+# Logs
+*.log

@@ -1,0 +1,97 @@
+# Tech Stack Configuration
+# Configure your project's technology stack for code generation and dev server.
+
+# Framework
+# Supported: flutter, react, vue, angular, svelte, nextjs, nuxt, solid, etc.
+framework: ""
+
+# Package Manager
+# Supported: npm, yarn, pnpm, bun, pub (Flutter), pip, cargo, etc.
+package_manager: ""
+
+# Dev Server Configuration
+# Required for Code-to-Canvas workflows
+dev_server:
+  # Command to start the dev server
+  # Examples:
+  #   React/Vue/Angular: "npm run dev"
+  #   Flutter web: "flutter run -d chrome --web-port=8080"
+  #   Next.js: "npm run dev"
+  command: ""
+  
+  # Default port your dev server runs on
+  default_port: 3000
+  
+  # Additional environment variables (optional)
+  env: {}
+
+# Design Tokens in Code (Optional)
+# Enable if you have existing tokens defined in your codebase
+design_tokens:
+  enabled: false
+  
+  # Path to token files relative to project root
+  # Examples:
+  #   React: "src/tokens/"
+  #   Flutter: "lib/theme/"
+  #   Tailwind: "tailwind.config.js"
+  location: ""
+  
+  # Token format
+  # Supported: css-vars, scss, sass, less, dart, typescript, json, tailwind
+  format: ""
+  
+  # Token file patterns (for discovery)
+  patterns:
+    colors: ""      # e.g., "colors.ts", "**/colors.dart"
+    spacing: ""     # e.g., "spacing.ts", "**/spacing.dart"
+    typography: ""  # e.g., "typography.ts", "**/text_styles.dart"
+
+# Component Library in Code (Optional)
+# Enable if you have an existing component library
+components:
+  enabled: false
+  
+  # Path to components relative to project root
+  # Examples:
+  #   React: "src/components/"
+  #   Flutter: "lib/widgets/"
+  #   Vue: "src/components/"
+  location: ""
+  
+  # Naming convention for components
+  # Options: PascalCase, kebab-case, camelCase, snake_case
+  naming_convention: "PascalCase"
+  
+  # Index/barrel file that exports all components (optional)
+  # Examples: "index.ts", "components.dart", "index.js"
+  index_file: ""
+
+# Framework-Specific MCP Tools (Optional)
+# Add MCP servers specific to your tech stack
+mcp_tools: {}
+  # Example for Flutter:
+  # dart:
+  #   enabled: true
+  #   command: "dart"
+  #   args: ["mcp-server"]
+  #
+  # Example for TypeScript:
+  # typescript:
+  #   enabled: true
+  #   command: "npx"
+  #   args: ["typescript-language-server", "--stdio"]
+
+# Code Generation Templates (Optional)
+# Customize how code is generated from Figma designs
+code_generation:
+  # Component template pattern
+  # Available placeholders: {{NAME}}, {{PROPS}}, {{CHILDREN}}, {{STYLES}}
+  component_template: ""
+  
+  # Style/token reference pattern
+  # Examples:
+  #   CSS: "var(--{{TOKEN}})"
+  #   Flutter: "context.{{COLLECTION}}.{{TOKEN}}"
+  #   Tailwind: "{{TOKEN}}"
+  token_reference: ""
