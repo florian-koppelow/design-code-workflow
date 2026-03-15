@@ -17,7 +17,9 @@ This guide explains how to configure the design-code workflow for your specific 
 |------|---------|
 | `config/design-system.yaml` | Figma libraries, naming conventions, DS settings |
 | `config/tech-stack.yaml` | Framework, dev server, code patterns |
-| `.cursor/mcp.json` | MCP server configuration |
+| `.vscode/mcp.json` | MCP server configuration (VS Code) |
+| `.github/copilot-instructions.md` | Workspace instructions for VS Code Agent |
+| `.github/agents/*.agent.md` | Custom agents for VS Code Agent |
 
 ## Design System Configuration
 
@@ -215,7 +217,7 @@ documentation:
 
 ### Framework MCP Tools
 
-Add to `.cursor/mcp.json`:
+Add to `.vscode/mcp.json`:
 
 ```json
 {
@@ -235,7 +237,7 @@ Add to `.cursor/mcp.json`:
 
 ### Linear/Jira Integration
 
-Add to `.cursor/mcp.json`:
+Add to `.vscode/mcp.json`:
 
 ```json
 {
@@ -296,7 +298,7 @@ components:
   naming_convention: "PascalCase"
 ```
 
-Add Dart MCP to `.cursor/mcp.json`:
+Add Dart MCP to `.vscode/mcp.json`:
 ```json
 {
   "mcpServers": {
@@ -355,7 +357,7 @@ Options:
 ### Config not loading
 - Check YAML syntax (use a validator)
 - Ensure file paths are correct
-- Restart Cursor after changes
+- Restart VS Code after changes
 
 ### Components not found
 - Verify `component_prefix` matches your naming

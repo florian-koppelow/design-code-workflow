@@ -73,7 +73,7 @@ The workflow adapts to your current design system maturity:
 
 ```mermaid
 flowchart TB
-    subgraph IDE["Your IDE (Cursor)"]
+    subgraph IDE["Your IDE (VS Code)"]
         Agent["AI Agent"]
         FigmaConsole["Figma Console MCP\n(57+ tools)"]
         ClaudeCode["Claude Code CLI\n(Bridge)"]
@@ -184,7 +184,7 @@ dev_server:
   default_port: 3000
 ```
 
-**MCP Config** (`.cursor/mcp.json`):
+**MCP Config** (`.vscode/mcp.json`):
 
 ```json
 {
@@ -297,18 +297,18 @@ Add descriptions to all Button variants explaining when to use each
 ```mermaid
 sequenceDiagram
     participant You
-    participant Cursor
+    participant VSCode as VS Code
     participant FigmaMCP as Figma Console MCP
     participant Figma
     
-    You->>Cursor: "Create a settings screen in Figma"
-    Cursor->>FigmaMCP: Search component library
+    You->>VSCode: "Create a settings screen in Figma"
+    VSCode->>FigmaMCP: Search component library
     FigmaMCP->>Figma: Create Section container
     FigmaMCP->>Figma: Instantiate DS components
     FigmaMCP->>Figma: Bind design variables
     FigmaMCP->>Figma: Take screenshot
-    Figma-->>Cursor: Screenshot for validation
-    Cursor-->>You: "Screen created, here's a preview"
+    Figma-->>VSCode: Screenshot for validation
+    VSCode-->>You: "Screen created, here's a preview"
 ```
 
 **Just ask:**
@@ -498,10 +498,10 @@ dev_server:
 
 | Problem | Solution |
 |---------|----------|
-| Figma Console not connecting | Open Figma Desktop, run Desktop Bridge plugin, restart Cursor |
+| Figma Console not connecting | Open Figma Desktop, run Desktop Bridge plugin, restart VS Code |
 | Code-to-Canvas captures ngrok page | Open ngrok URL in browser first, click through interstitial |
 | Screenshots returning errors | Try without nodeId, check token scopes |
-| generate_figma_design not available | Only works in Claude Code CLI, not Cursor |
+| generate_figma_design not available | Only works in Claude Code CLI, not VS Code |
 | Components not found | Try broader search terms, check component prefix in config |
 | Variables not binding | Ensure collection names match config |
 

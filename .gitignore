@@ -9,9 +9,11 @@ Thumbs.db
 
 # Generated config (contains secrets)
 .cursor/mcp.json
+.vscode/mcp.json
 
 # Keep the template
 !.cursor/mcp.json.template
+!.vscode/mcp.json.template
 
 # Node modules (if any scripts use npm)
 node_modules/
