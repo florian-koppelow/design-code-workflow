@@ -129,12 +129,12 @@ case $CHOICE in
         read -p "New Figma access token: " TOKEN
         
         if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' "s/FIGMA_ACCESS_TOKEN\": \"[^\"]*\"/FIGMA_ACCESS_TOKEN\": \"$TOKEN\"/" "$ROOT_DIR/.cursor/mcp.json"
+            sed -i '' "s/FIGMA_ACCESS_TOKEN\": \"[^\"]*\"/FIGMA_ACCESS_TOKEN\": \"$TOKEN\"/" "$ROOT_DIR/.vscode/mcp.json"
         else
-            sed -i "s/FIGMA_ACCESS_TOKEN\": \"[^\"]*\"/FIGMA_ACCESS_TOKEN\": \"$TOKEN\"/" "$ROOT_DIR/.cursor/mcp.json"
+            sed -i "s/FIGMA_ACCESS_TOKEN\": \"[^\"]*\"/FIGMA_ACCESS_TOKEN\": \"$TOKEN\"/" "$ROOT_DIR/.vscode/mcp.json"
         fi
-        success "Updated Figma token in .cursor/mcp.json"
-        warning "Restart Cursor to apply changes"
+        success "Updated Figma token in .vscode/mcp.json"
+        warning "Restart VS Code to apply changes"
         ;;
         
     6)
@@ -156,7 +156,7 @@ case $CHOICE in
         echo '  }'
         echo ""
         warning "Please manually add MCP tools to:"
-        echo "  - .cursor/mcp.json (for Cursor)"
+        echo "  - .vscode/mcp.json (for VS Code)"
         echo "  - config/tech-stack.yaml (for documentation)"
         ;;
         

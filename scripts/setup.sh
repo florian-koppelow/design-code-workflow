@@ -111,7 +111,7 @@ echo "Create one at: https://www.figma.com/developers/api#access-tokens"
 read -p "Enter your Figma access token: " FIGMA_TOKEN
 
 if [ -z "$FIGMA_TOKEN" ]; then
-    warning "No token provided. You'll need to add it manually to .cursor/mcp.json"
+    warning "No token provided. You'll need to add it manually to .vscode/mcp.json"
     FIGMA_TOKEN="YOUR_FIGMA_TOKEN_HERE"
 fi
 
@@ -308,8 +308,8 @@ EOF
 success "Created config/tech-stack.yaml"
 
 # Generate MCP config
-mkdir -p "$ROOT_DIR/.cursor"
-cat > "$ROOT_DIR/.cursor/mcp.json" << EOF
+mkdir -p "$ROOT_DIR/.vscode"
+cat > "$ROOT_DIR/.vscode/mcp.json" << EOF
 {
   "mcpServers": {
     "figma-console": {
@@ -327,7 +327,7 @@ cat > "$ROOT_DIR/.cursor/mcp.json" << EOF
   }
 }
 EOF
-success "Created .cursor/mcp.json"
+success "Created .vscode/mcp.json"
 
 # Setup Claude Code Figma MCP
 echo ""
@@ -356,7 +356,7 @@ echo "1. OPEN FIGMA DESKTOP"
 echo "   - Go to Plugins menu"
 echo "   - Run 'figma-desktop-bridge' plugin"
 echo ""
-echo "2. RESTART CURSOR"
+echo "2. RESTART VS CODE"
 echo "   - Restart to load the new MCP configuration"
 echo ""
 echo "3. AUTHENTICATE CLAUDE CODE (for Code-to-Canvas)"
@@ -370,7 +370,7 @@ if [ -z "$WORKING_FILE" ]; then
 fi
 
 if [ "$FIGMA_TOKEN" = "YOUR_FIGMA_TOKEN_HERE" ]; then
-    warning "Remember to add your Figma token to .cursor/mcp.json"
+    warning "Remember to add your Figma token to .vscode/mcp.json"
 fi
 
 echo ""
@@ -378,7 +378,7 @@ echo "======================================"
 echo "  Ready to use!"
 echo "======================================"
 echo ""
-echo "Try these commands in Cursor:"
+echo "Try these commands in VS Code Agent chat:"
 echo ""
 if [ "$MATURITY_LEVEL" -eq 0 ]; then
     echo "  'Create a color palette in Figma'"

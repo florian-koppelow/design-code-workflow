@@ -68,7 +68,7 @@ Storybook, Widgetbook, and other documentation platforms are **optional**. They 
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                        YOUR IDE (Cursor)                         │
+│                        YOUR IDE (VS Code)                        │
 │                                                                  │
 │   ┌──────────────────┐      ┌────────────────────────────────┐  │
 │   │                  │      │      Figma Console MCP          │  │
@@ -101,7 +101,7 @@ Storybook, Widgetbook, and other documentation platforms are **optional**. They 
 
 ```mermaid
 flowchart TB
-    subgraph IDE["Your IDE (Cursor)"]
+    subgraph IDE["Your IDE (VS Code)"]
         Agent["AI Agent"]
         FigmaConsole["Figma Console MCP"]
         ClaudeCode["Claude Code CLI"]
@@ -266,7 +266,7 @@ components:
   location: "src/components/"
 {code}
 
-**.cursor/mcp.json**
+**.vscode/mcp.json**
 
 {code:language=json|title=MCP Configuration}
 {
@@ -536,7 +536,7 @@ After any Figma modification, the AI captures a screenshot to verify the result.
 **Solutions:**
 1. Open Figma Desktop (not browser)
 2. Run Desktop Bridge plugin (Plugins menu → figma-desktop-bridge)
-3. Restart Cursor
+3. Restart VS Code
 4. Check ports 9223-9232 are available
 
 {panel}
@@ -554,9 +554,9 @@ After any Figma modification, the AI captures a screenshot to verify the result.
 
 {panel:title=generate_figma_design Not Available|borderStyle=solid|borderColor=#FF5630|bgColor=#FFEBE6}
 
-**Symptoms:** Tool not found in Cursor
+**Symptoms:** Tool not found in VS Code
 
-**Solution:** This tool only works in Claude Code CLI, not Cursor.
+**Solution:** This tool only works in Claude Code CLI, not VS Code.
 {code:language=bash}
 # Use Claude Code CLI
 claude
@@ -596,7 +596,7 @@ Search for components with query: ""
 
 | Issue | Quick Fix |
 |-------|-----------|
-| MCP not responding | Restart Cursor |
+| MCP not responding | Restart VS Code |
 | Plugin not connecting | Re-run Desktop Bridge in Figma |
 | Token expired | Generate new token, update mcp.json |
 | Wrong file | Check file_key in config |
@@ -651,7 +651,7 @@ Search for components with query: ""
 | `generate_figma_design` | Capture running UI to Figma |
 
 {note}
-This tool only works in Claude Code CLI, not in Cursor.
+This tool only works in Claude Code CLI, not in VS Code.
 {note}
 
 ---
@@ -715,7 +715,7 @@ components:
   naming_convention: "PascalCase"
 {code}
 
-**Additional MCP:** Add to `.cursor/mcp.json`:
+**Additional MCP:** Add to `.vscode/mcp.json`:
 {code:language=json}
 {
   "dart": {

@@ -30,7 +30,7 @@ The setup wizard asks about:
 
 ### 3. Start Using
 
-After setup, try these in Cursor:
+After setup, try these in VS Code Agent chat:
 
 ```
 "Create a color palette in Figma"          # Level 0+
@@ -67,7 +67,7 @@ After setup, try these in Cursor:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Your IDE (Cursor)                        │
+│                     Your IDE (VS Code)                       │
 │                                                              │
 │  ┌─────────────────┐    ┌─────────────────────────────────┐ │
 │  │ Your Code       │    │ Figma Console MCP               │ │
@@ -101,17 +101,12 @@ After setup, try these in Cursor:
 
 ```
 design-code-workflow/
-├── .cursor/
-│   ├── mcp.json              # MCP configuration
-│   ├── agents/               # AI agents
-│   │   └── design-to-code.md
-│   ├── skills/               # Workflow skills
-│   │   ├── figma-screen-creation/
-│   │   ├── code-to-canvas-bridge/
-│   │   ├── code-to-canvas-reconciliation/
-│   │   ├── design-system-ops/
-│   │   └── design-system-health/
-│   └── rules/                # Always-applied rules
+├── .vscode/
+│   └── mcp.json              # MCP configuration (VS Code)
+├── .github/
+│   ├── copilot-instructions.md # Workspace instructions
+│   └── agents/
+│       └── design-to-code.agent.md
 ├── config/
 │   ├── design-system.yaml    # DS configuration
 │   └── tech-stack.yaml       # Framework configuration

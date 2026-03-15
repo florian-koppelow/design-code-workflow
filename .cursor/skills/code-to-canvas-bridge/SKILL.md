@@ -2,7 +2,7 @@
 name: code-to-canvas-bridge
 description: |-
   Capture running UI to Figma using Claude Code CLI as a bridge.
-  Cursor doesn't support generate_figma_design, so we use Claude Code for this specific task.
+  VS Code doesn't support generate_figma_design, so we use Claude Code for this specific task.
   Works at any maturity level - captures any running web UI.
   Use when the user wants to capture localhost/staging UI into Figma.
 
@@ -155,7 +155,7 @@ The captured layers serve as visual reference for design work.
 
 Use `code-to-canvas-reconciliation` skill to convert generic layers to DS components:
 
-1. Return to Cursor
+1. Return to VS Code
 2. Use reconciliation skill
 3. Replace generic layers with component instances
 4. Bind variables instead of hardcoded colors
@@ -163,7 +163,7 @@ Use `code-to-canvas-reconciliation` skill to convert generic layers to DS compon
 ## Troubleshooting
 
 ### "generate_figma_design not available"
-- Ensure you're using Claude Code CLI, not Cursor
+- Ensure you're using Claude Code CLI, not VS Code
 - Verify Figma MCP is added: `claude mcp list`
 - Re-authenticate: `/mcp` in Claude Code
 
@@ -192,7 +192,7 @@ Use `code-to-canvas-reconciliation` skill to convert generic layers to DS compon
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Your IDE (Cursor)                        │
+│                     Your IDE (VS Code)                       │
 │                                                              │
 │  ┌─────────────────┐    ┌─────────────────────────────────┐ │
 │  │ Your Code       │    │ Figma Console MCP               │ │

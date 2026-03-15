@@ -15,7 +15,7 @@ Two complementary MCP tools working together:
 
 ```mermaid
 flowchart TB
-    subgraph IDE["Your IDE (Cursor)"]
+    subgraph IDE["Your IDE (VS Code)"]
         Agent["AI Agent"]
         FigmaConsole["Figma Console MCP"]
         ClaudeCode["Claude Code CLI"]
