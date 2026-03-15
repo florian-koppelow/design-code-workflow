@@ -46,8 +46,8 @@ When component library exists:
 
 For capturing running UI:
 1. Ensure app is running on localhost
-2. Use ngrok to expose
-3. Open ngrok URL in browser first (clear interstitial)
+2. Use a public tunnel (ngrok or equivalent)
+3. Open the tunnel URL in browser first (clear interstitial)
 4. Use Claude Code CLI with `generate_figma_design`
 5. Consider reconciliation for Level 2+ projects
 

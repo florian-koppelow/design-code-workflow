@@ -123,7 +123,7 @@ flowchart TB
     FigmaConsole <-->|WebSocket| Plugin
     Plugin <--> DS
     Plugin <--> Screens
-    ClaudeCode -->|ngrok| WebApp
+    ClaudeCode -->|public tunnel| WebApp
     ClaudeCode --> Screens
     Code --> WebApp
 ```
@@ -187,7 +187,6 @@ flowchart TB
 | ✅ Desktop Bridge Plugin | Figma Plugins menu | Enables write access |
 | ✅ Figma Access Token | [Create token](https://www.figma.com/developers/api#access-tokens) | API access |
 | ✅ Claude Code CLI | `npm install -g @anthropic-ai/claude-code` | Code-to-Canvas |
-| ✅ ngrok | `brew install ngrok` or `npm install -g ngrok` | Expose localhost |
 
 {panel}
 
@@ -198,6 +197,7 @@ flowchart TB
 | ⬜ Component Library | Level 2+ workflows |
 | ⬜ Storybook/Widgetbook | Level 3 health analysis |
 | ⬜ Framework MCP tools | Enhanced code intelligence |
+| ⬜ Public tunnel (ngrok, Cloudflare, etc.) | Localhost capture only |
 
 {panel}
 
@@ -362,12 +362,12 @@ $ npm run dev
 # or: flutter run -d chrome --web-port=8080
 # or: ng serve
 
-Step 2: Start ngrok tunnel
+Step 2: Start a tunnel (ngrok or equivalent)
 ────────────────────────────────────────
 $ ngrok http 3000
 # Copy the https URL (e.g., https://abc123.ngrok-free.dev)
 
-Step 3: Open ngrok URL in browser
+Step 3: Open tunnel URL in browser
 ────────────────────────────────────────
 Navigate to the URL and click through any interstitial pages
 
@@ -384,13 +384,13 @@ $ claude
 ```
 ┌─────────┐    ┌─────────┐    ┌─────────────┐    ┌─────────────┐
 │  Start  │───▶│  Start  │───▶│   Claude    │───▶│   Figma     │
-│   App   │    │  ngrok  │    │   Code      │    │   Page      │
+│   App   │    │ tunnel  │    │   Code      │    │   Page      │
 │         │    │         │    │   Capture   │    │   Created   │
 └─────────┘    └─────────┘    └─────────────┘    └─────────────┘
      │              │                │
      ▼              ▼                ▼
  localhost      https://...     generate_figma_
-   :3000       ngrok-free.dev      design
+  :3000       tunnel-url          design
 ```
 
 ---
@@ -541,12 +541,12 @@ After any Figma modification, the AI captures a screenshot to verify the result.
 
 {panel}
 
-{panel:title=Code-to-Canvas Captures ngrok Page|borderStyle=solid|borderColor=#FF5630|bgColor=#FFEBE6}
+{panel:title=Code-to-Canvas Captures Tunnel Page|borderStyle=solid|borderColor=#FF5630|bgColor=#FFEBE6}
 
-**Symptoms:** Captured UI shows ngrok interstitial, not your app
+**Symptoms:** Captured UI shows tunnel interstitial, not your app
 
 **Solutions:**
-1. Open ngrok URL in browser first
+1. Open tunnel URL in browser first
 2. Click "Visit Site" on interstitial
 3. Then run the capture command
 
@@ -600,7 +600,7 @@ Search for components with query: ""
 | Plugin not connecting | Re-run Desktop Bridge in Figma |
 | Token expired | Generate new token, update mcp.json |
 | Wrong file | Check file_key in config |
-| ngrok not working | Check authtoken: `ngrok config check` |
+| tunnel not working | Check tunnel status (ngrok example: `ngrok config check`) |
 
 ---
 
@@ -770,7 +770,7 @@ components:
 ```bash
 npm run dev
 ngrok http 3000
-# In Claude Code: "Capture [ngrok-url] to [figma-file]"
+# In Claude Code: "Capture [tunnel-url] to [figma-file]"
 ```
 
 **Create screen (Level 2+):**

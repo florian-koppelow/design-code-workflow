@@ -10,7 +10,7 @@ description: |-
   - user: "Capture this app to Figma" → run code-to-canvas via Claude Code
   - user: "Send this screen to Figma" → invoke Claude Code bridge
   - user: "Code to canvas" → use this bridge workflow
-  - user: "Push my UI to Figma" → capture via ngrok tunnel
+  - user: "Push my UI to Figma" → capture via public tunnel
 ---
 
 # Code-to-Canvas Bridge via Claude Code CLI
@@ -46,8 +46,9 @@ Then in Claude Code:
 
 Select **figma** and click **Allow Access** in the browser window.
 
-### 4. Install ngrok (for localhost capture)
+### 4. Install a tunnel tool (optional)
 
+Example with ngrok:
 ```bash
 # macOS
 brew install ngrok
@@ -56,10 +57,7 @@ brew install ngrok
 npm install -g ngrok
 ```
 
-Sign up at https://dashboard.ngrok.com and configure:
-```bash
-ngrok config add-authtoken YOUR_TOKEN
-```
+Or use Cloudflare Tunnel, localhost.run, or any HTTPS tunnel.
 
 ## Usage Workflow
 
@@ -75,7 +73,7 @@ Read `config/tech-stack.yaml` for the dev server command:
 # Your command: {{DEV_COMMAND}}
 ```
 
-### Step 2: Start ngrok Tunnel
+### Step 2: Start a Tunnel
 
 The Figma MCP server captures from the public internet, not localhost.
 
@@ -83,16 +81,16 @@ The Figma MCP server captures from the public internet, not localhost.
 ngrok http {{PORT}}  # e.g., ngrok http 3000
 ```
 
-Copy the ngrok URL (e.g., `https://abc123.ngrok-free.dev`).
+Copy the tunnel URL (e.g., `https://abc123.ngrok-free.dev`).
 
-**Important:** Open the ngrok URL in your browser first and click through any interstitial pages.
+**Important:** Open the tunnel URL in your browser first and click through any interstitial pages.
 
 ### Step 3: Invoke Claude Code
 
 From terminal:
 
 ```bash
-claude --print "Use generate_figma_design to capture the UI at https://YOUR_NGROK_URL and send it to the Figma file at https://www.figma.com/design/YOUR_FILE_KEY. Create a new page called 'Code Capture - $(date +%Y-%m-%d)'."
+claude --print "Use generate_figma_design to capture the UI at https://YOUR_TUNNEL_URL and send it to the Figma file at https://www.figma.com/design/YOUR_FILE_KEY. Create a new page called 'Code Capture - $(date +%Y-%m-%d)'."
 ```
 
 Or interactively:
@@ -103,7 +101,7 @@ claude
 
 Then ask:
 ```
-Capture the running app at https://YOUR_NGROK_URL to my Figma file https://figma.com/design/FILE_KEY
+Capture the running app at https://YOUR_TUNNEL_URL to my Figma file https://figma.com/design/FILE_KEY
 Create a page called "Code Capture"
 ```
 
@@ -111,7 +109,7 @@ Create a page called "Code Capture"
 
 | Parameter | Description |
 |-----------|-------------|
-| `urls` | Array of URLs to capture (ngrok URL, staging, production) |
+| `urls` | Array of URLs to capture (tunnel URL, staging, production) |
 | `figma_file_url` | Target Figma file URL (from `config/design-system.yaml` working_file) |
 | `page_name` | Name for the new page in Figma |
 | `frame_name` | Name for the captured frame |
@@ -129,16 +127,16 @@ URL="${1:-http://localhost:3000}"
 FIGMA_FILE="${2:-YOUR_DEFAULT_FILE}"
 PAGE_NAME="${3:-Code Capture - $(date +%Y-%m-%d_%H-%M)}"
 
-echo "Starting ngrok tunnel..."
+echo "Starting tunnel..."
 ngrok http $(echo $URL | grep -oE '[0-9]+$') &
 NGROK_PID=$!
 sleep 3
 
-NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
-echo "ngrok URL: $NGROK_URL"
+TUNNEL_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+echo "Tunnel URL: $TUNNEL_URL"
 
 echo "Capturing to Figma..."
-claude --print "Use generate_figma_design to capture $NGROK_URL to $FIGMA_FILE. Create page: $PAGE_NAME"
+claude --print "Use generate_figma_design to capture $TUNNEL_URL to $FIGMA_FILE. Create page: $PAGE_NAME"
 
 kill $NGROK_PID
 ```
@@ -169,11 +167,11 @@ Use `code-to-canvas-reconciliation` skill to convert generic layers to DS compon
 
 ### "Cannot connect to localhost"
 - Claude Code's MCP runs remotely
-- **Must use ngrok** to expose localhost
-- Check ngrok is running: `curl http://localhost:4040/api/tunnels`
+- **Use a public tunnel** to expose localhost
+- If using ngrok, check it is running: `curl http://localhost:4040/api/tunnels`
 
-### Captures ngrok interstitial page
-- Open ngrok URL in browser first
+### Captures tunnel interstitial page
+- Open tunnel URL in browser first
 - Click through any "Visit Site" buttons
 - Then run the capture
 
@@ -185,7 +183,7 @@ Use `code-to-canvas-reconciliation` skill to convert generic layers to DS compon
 ## Limitations
 
 - **Remote capture**: Figma MCP captures from public internet
-- **Localhost requires ngrok**: No direct localhost access
+- **Localhost requires a public tunnel**: No direct localhost access
 - **Rate limits**: Check your Figma plan for API limits
 
 ## Integration Diagram
