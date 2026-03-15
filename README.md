@@ -93,7 +93,7 @@ After setup, try these in VS Code Agent chat:
 | Figma account + token | Yes | API access |
 | Figma Desktop + Bridge | Yes | Write operations |
 | Claude Code CLI | Yes | Code-to-Canvas |
-| ngrok | Yes | Expose localhost |
+| Public tunnel (ngrok, Cloudflare, etc.) | No | Expose localhost for capture |
 | Component library | No | Level 2+ features |
 | Storybook/Widgetbook | No | Level 3 features |
 
@@ -177,7 +177,7 @@ Or edit `config/design-system.yaml` directly.
 | Issue | Solution |
 |-------|----------|
 | Figma Console not connecting | Open Figma Desktop, run Desktop Bridge plugin |
-| Code-to-Canvas shows ngrok page | Open ngrok URL in browser first |
+| Code-to-Canvas shows tunnel interstitial | Open the tunnel URL in browser first |
 | generate_figma_design unavailable | Only works in Claude Code CLI |
 
 ## License

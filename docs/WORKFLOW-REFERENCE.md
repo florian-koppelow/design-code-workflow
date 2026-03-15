@@ -37,7 +37,7 @@ flowchart TB
     FigmaConsole <-->|"WebSocket"| Plugin
     Plugin <--> DS
     Plugin <--> Screens
-    ClaudeCode -->|"ngrok tunnel"| WebApp
+    ClaudeCode -->|"public tunnel"| WebApp
     ClaudeCode -->|"generate_figma_design"| Screens
     Code --> WebApp
 ```
@@ -117,15 +117,15 @@ Use `figma_take_screenshot` after each significant change to verify visual corre
 
 **Steps:**
 1. Start dev server: `{{dev_server.command}}`
-2. Start ngrok: `ngrok http {{port}}`
-3. In Claude Code: "Capture https://[ngrok-url] to Figma"
+2. Start a tunnel (ngrok or equivalent): `ngrok http {{port}}`
+3. In Claude Code: "Capture https://[tunnel-url] to Figma"
 4. Captured layers appear in Figma file
 
 **Tools:**
 - Claude Code CLI with Figma MCP
 - `generate_figma_design` tool
 
-**Important:** Open ngrok URL in browser first to bypass interstitial.
+**Important:** Open the tunnel URL in browser first to bypass any interstitial.
 
 ### 4. Create Screens in Figma (Level 2+)
 
@@ -234,7 +234,7 @@ Search → Instantiate → Configure → Bind Variables → Validate
 | Figma Console not connecting | Desktop Bridge not running | Open Figma Desktop, run plugin |
 | Components not found | Wrong search terms | Try broader search, check prefix |
 | Variables not binding | Wrong collection | Verify collection names in config |
-| Code-to-Canvas fails | Localhost not accessible | Use ngrok tunnel |
+| Code-to-Canvas fails | Localhost not accessible | Use a public tunnel |
 | Screenshots error | Invalid node ID | Try without nodeId parameter |
 
 ## Best Practices

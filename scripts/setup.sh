@@ -63,14 +63,15 @@ else
     fi
 fi
 
-# Check for ngrok
+# Check for tunnel tool (optional)
 if command -v ngrok &> /dev/null; then
-    success "ngrok found"
+    success "ngrok found (optional)"
 else
-    warning "ngrok not found"
-    echo "Install ngrok for Code-to-Canvas:"
+    warning "No tunnel tool found (optional)"
+    echo "If you want to capture localhost, install a tunnel tool like ngrok:"
     echo "  macOS: brew install ngrok"
     echo "  npm: npm install -g ngrok"
+    echo "Or use Cloudflare Tunnel, localhost.run, or any HTTPS tunnel."
     echo ""
 fi
 

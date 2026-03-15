@@ -95,7 +95,7 @@ flowchart TB
     FigmaConsole <-->|"WebSocket\n9223-9232"| Plugin
     Plugin <--> DS
     Plugin <--> Screens
-    ClaudeCode -->|"ngrok tunnel"| WebApp
+    ClaudeCode -->|"public tunnel"| WebApp
     ClaudeCode -->|"generate_figma_design"| Screens
     Code --> WebApp
 ```
@@ -146,7 +146,7 @@ Then follow the prompts for your specific configuration.
 | Desktop Bridge Plugin | Plugins menu in Figma | Enables full write access | **Yes** |
 | Figma Access Token | [Create token](https://www.figma.com/developers/api#access-tokens) | REST API access | **Yes** |
 | Claude Code CLI | `npm install -g @anthropic-ai/claude-code` | Code-to-Canvas bridge | **Yes** |
-| ngrok | `brew install ngrok` or `npm install -g ngrok` | Expose localhost for capture | **Yes** |
+| Public tunnel (ngrok, Cloudflare, etc.) | `brew install ngrok` or `npm install -g ngrok` | Expose localhost for capture | No |
 | Component Library | Create in Figma | Screen creation | No (Level 2+) |
 | Storybook/Widgetbook | Framework-specific | Cross-platform health | No (Level 3) |
 
@@ -327,14 +327,14 @@ dark mode, and location services.
 sequenceDiagram
     participant You
     participant Terminal
-    participant ngrok
+    participant Tunnel
     participant ClaudeCode as Claude Code
     participant Figma
     
     You->>Terminal: npm run dev (or your command)
     You->>Terminal: ngrok http 3000
-    ngrok-->>You: https://abc123.ngrok-free.dev
-    You->>ClaudeCode: "Capture [ngrok-url] to Figma"
+    Tunnel-->>You: https://abc123.ngrok-free.dev
+    You->>ClaudeCode: "Capture [tunnel-url] to Figma"
     ClaudeCode->>Figma: generate_figma_design
     Figma-->>You: New page with captured UI
 ```
@@ -346,16 +346,16 @@ sequenceDiagram
 npm run dev  # or flutter run -d chrome --web-port=8080
 ```
 
-2. **Start ngrok**
+2. **Start a tunnel (ngrok or equivalent)**
 ```bash
 ngrok http 3000  # your port
 ```
 
-3. **Open ngrok URL in browser** (clear any interstitial)
+3. **Open tunnel URL in browser** (clear any interstitial)
 
 4. **In Claude Code CLI**
 ```
-Capture https://YOUR_NGROK_URL to this Figma file:
+Capture https://YOUR_TUNNEL_URL to this Figma file:
 https://www.figma.com/design/YOUR_FILE_KEY
 
 Create a page called "App Capture"
@@ -421,7 +421,7 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    V1["Finish coding\nfeature"] --> V2["Run app +\nngrok"]
+    V1["Finish coding\nfeature"] --> V2["Run app +\ntunnel"]
     V2 --> V3["Capture to Figma\nvia Claude Code"]
     V3 --> V4["Review visually\nin Figma"]
     V4 --> V5["Feedback loop"]
@@ -499,7 +499,7 @@ dev_server:
 | Problem | Solution |
 |---------|----------|
 | Figma Console not connecting | Open Figma Desktop, run Desktop Bridge plugin, restart VS Code |
-| Code-to-Canvas captures ngrok page | Open ngrok URL in browser first, click through interstitial |
+| Code-to-Canvas captures tunnel page | Open tunnel URL in browser first, click through interstitial |
 | Screenshots returning errors | Try without nodeId, check token scopes |
 | generate_figma_design not available | Only works in Claude Code CLI, not VS Code |
 | Components not found | Try broader search terms, check component prefix in config |
@@ -528,7 +528,7 @@ npm run dev
 ngrok http 3000
 
 # In Claude Code
-"Capture [ngrok-url] to [figma-file]"
+"Capture [tunnel-url] to [figma-file]"
 ```
 
 **Check health:**

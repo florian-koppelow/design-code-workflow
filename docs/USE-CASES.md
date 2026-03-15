@@ -122,7 +122,7 @@ design_tokens:
 ### Prerequisites
 
 - Claude Code CLI installed
-- ngrok installed and configured
+- A public tunnel tool (ngrok, Cloudflare, etc.)
 - Figma MCP added to Claude Code
 
 ### Step by Step
@@ -132,16 +132,16 @@ design_tokens:
    npm run dev  # or your dev command
    ```
 
-2. **Start ngrok:**
+2. **Start a tunnel (ngrok or equivalent):**
    ```bash
    ngrok http 3000  # your port
    ```
 
-3. **Open ngrok URL in browser** to clear interstitial
+3. **Open tunnel URL in browser** to clear interstitial
 
 4. **In Claude Code CLI:**
    ```
-   Capture the app at https://abc123.ngrok-free.dev 
+   Capture the app at https://YOUR_TUNNEL_URL 
    to my Figma file https://figma.com/design/FILE_KEY
    Create a page called "App Capture - March 2026"
    ```
@@ -151,7 +151,7 @@ design_tokens:
 ### Example Prompts (in Claude Code)
 
 - "Capture https://myapp.ngrok.dev to Figma file [URL]"
-- "Screenshot my running app at localhost via ngrok to Figma"
+- "Screenshot my running app at localhost via a tunnel to Figma"
 - "Push this UI to my Figma working file"
 
 ---
