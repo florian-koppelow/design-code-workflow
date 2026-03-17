@@ -2,6 +2,22 @@
 
 Quick reference for Figma Console MCP tools.
 
+## Capability Comparison by Use Case
+
+| Use case | Figma MCP | Figma Console MCP | Code to Canvas (Figma native + Claude Code) |
+|---|---|---|---|
+| Design capture / import | `mcp_com_figma_mcp_generate_figma_design` | N/A | `generate_figma_design` |
+| Design context / metadata | `mcp_com_figma_mcp_get_design_context`, `mcp_com_figma_mcp_get_metadata` | N/A | N/A |
+| Code Connect mapping | `mcp_com_figma_mcp_get_code_connect_map`, `mcp_com_figma_mcp_add_code_connect_map`, `mcp_com_figma_mcp_get_code_connect_suggestions`, `mcp_com_figma_mcp_send_code_connect_mappings` | N/A | N/A |
+| Component discovery / instantiation | N/A | `figma_search_components`, `figma_instantiate_component`, `figma_get_component`, `figma_get_component_details` | N/A |
+| Component properties / variants | N/A | `figma_add_component_property`, `figma_set_instance_properties` | N/A |
+| Tokens / variables | N/A | `figma_setup_design_tokens`, `figma_create_variable_collection`, `figma_create_variable`, `figma_add_mode`, `figma_batch_create_variables`, `figma_batch_update_variables`, `figma_get_variables` | N/A |
+| Node creation / editing | N/A | `figma_execute`, `figma_create_child`, `figma_clone_node`, `figma_delete_node` | N/A |
+| Visual validation | N/A | `figma_take_screenshot` | N/A |
+| Design system health / lint | N/A | `figma_audit_design_system` | N/A |
+| Documentation | N/A | `figma_generate_component_doc`, `figma_set_description` | N/A |
+| Comments / collaboration | N/A | `figma_get_comments`, `figma_delete_comment` | N/A |
+
 ## Token Management
 
 | Tool | Purpose | Example |
