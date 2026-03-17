@@ -183,3 +183,77 @@ For a login screen design:
 - Handle loading state on submit
 - Error states should use `Colors/Content/Error` token
 ```
+
+## Skills (ported from .cursor/skills)
+
+These skills are included here so VS Code agents receive the same guidance
+as Cursor. Apply the relevant workflow when the user asks for that task.
+
+### Code-to-Canvas Bridge (Claude Code CLI)
+
+Use when the user wants to capture a running UI into Figma. VS Code does not
+support `generate_figma_design`, so use Claude Code CLI as a bridge.
+
+Prereqs:
+- Install Claude Code CLI: `npm install -g @anthropic-ai/claude-code`
+- Add Figma MCP: `claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp`
+- Authenticate in Claude Code with `/mcp`
+- Use a public tunnel (ngrok/cloudflare) for localhost
+
+Workflow:
+1. Start dev server from `config/tech-stack.yaml`.
+2. Start a tunnel (e.g., `ngrok http <port>`), open the tunnel URL once to
+	clear any interstitial.
+3. Run Claude Code to capture:
+	`claude --print "Use generate_figma_design to capture the UI at https://TUNNEL_URL and send it to the Figma file at https://www.figma.com/design/FILE_KEY. Create a new page called 'Code Capture - YYYY-MM-DD'."`
+4. For Level 2+, reconcile captured layers with DS components afterward.
+
+### Code-to-Canvas Reconciliation
+
+Use when Code-to-Canvas output must be converted to governed DS components.
+Requires Level 2+ for full component replacement (Level 1 can bind tokens).
+
+Workflow:
+1. Take screenshot of captured output.
+2. Create a new Section next to the capture for reconciled content.
+3. Search components (empty query to cache), instantiate matching variants.
+4. Bind variables instead of hardcoded colors.
+5. Compare screenshots for fidelity; archive or remove original after verify.
+
+### Design System Health
+
+Use to audit DS quality (Level 1+). Run automated audit and report the top
+issues, quick wins, and next steps.
+
+Workflow:
+1. Run `figma_audit_design_system` on foundations/components file.
+2. Review naming, token architecture, component metadata, accessibility.
+3. Provide a score (0-100), top 3 issues, and prioritized fixes.
+
+### Design System Ops
+
+Use to create/manage tokens, variables, and component metadata.
+
+Key actions:
+- Level 0: create token collections with `figma_setup_design_tokens`.
+- Level 1+: bulk create/update variables with `figma_batch_create_variables`
+  and `figma_batch_update_variables`.
+- Level 2+: add component properties and descriptions.
+
+Always bind variables and take screenshots to verify changes.
+
+### Figma Screen Creation
+
+Use to build screens in Figma with DS components and tokens.
+
+Workflow (Level 2+):
+1. Cache components with empty `figma_search_components`.
+2. Create a Section/Frame container.
+3. Search and instantiate components; configure via instance properties.
+4. Bind variables for colors/spacing/typography.
+5. Screenshot, verify, iterate.
+
+Workflow (Level 0-1):
+1. Create layout frames and text placeholders.
+2. Bind variables if available (Level 1).
+3. Avoid snowflakes at Level 2+.
